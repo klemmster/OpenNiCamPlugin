@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="onitouch" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\share\;CMake Files\..\..\..\..\..\usr\share\cmake-2.8\;CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\;CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\;CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Compiler\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; install" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install/local">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; install/local" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="install/strip">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; install/strip" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="list_install_components">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; list_install_components" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="onitouch">
+         <Option output="/home/richy/Projekte/BA/libavg_Plugin/onitouch.so" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option object_output="./" />
+         <Option type="3" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/ni" />
+            <Add directory="/usr/include/python2.6" />
+            <Add directory="/usr/include/libxml2" />
+            <Add directory="/home/richy/Projekte/Archimedes/libavg/src" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; onitouch" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="onitouch/fast">
+         <Option output="/home/richy/Projekte/BA/libavg_Plugin/onitouch.so" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option object_output="./" />
+         <Option type="3" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/ni" />
+            <Add directory="/usr/include/python2.6" />
+            <Add directory="/usr/include/libxml2" />
+            <Add directory="/home/richy/Projekte/Archimedes/libavg/src" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; onitouch/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/richy/Projekte/BA/libavg_Plugin" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/richy/Projekte/BA/libavg_Plugin/Makefile&quot; clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/DepthTouchDetector.cpp">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDevice.cpp">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDeviceManager.cpp">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDeviceThread.cpp">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniTouchPlugin.cpp">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/DepthTouchDetector.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDevice.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDeviceManager.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDeviceThread.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniTouchPlugin.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeGenericSystem.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeCInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeCXXInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPythonLibs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeFindFrameworks.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPackageMessage.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeParseArguments.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindBoost.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindLibXml2.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPkgConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPackageHandleStandardArgs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/FindPackageMessage.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/CMakeParseArguments.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/Linux.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/UnixPaths.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/Linux-GNU-C.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/Linux-GNU-CXX.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Platform\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Compiler/GNU-C.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Compiler/GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/../../../../../usr/share/cmake-2.8/Modules/Compiler/GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\cmake-2.8\Modules\Compiler\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
