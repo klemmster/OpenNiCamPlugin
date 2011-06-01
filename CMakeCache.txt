@@ -197,7 +197,7 @@ PYVERSIONS_EXE:FILEPATH=/usr/bin/pyversions
 onitouch_BINARY_DIR:STATIC=/home/richy/Projekte/BA/libavg_Plugin
 
 //Dependencies for the target
-onitouch_LIB_DEPENDS:STATIC=general;/usr/lib/libpython2.6.so;general;/usr/lib/libboost_python.so;general;/usr/lib/libboost_thread-mt.so;general;/usr/lib/libxml2.so;general;/home/richy/Projekte/Archimedes/libavg/src/wrapper/.libs/avg.so;
+onitouch_LIB_DEPENDS:STATIC=general;/usr/lib/libpython2.6.so;general;/usr/lib/libboost_python.so;general;/usr/lib/libboost_thread-mt.so;general;/usr/lib/libxml2.so;general;/home/richy/Projekte/Archimedes/libavg/src/wrapper/.libs/avg.so;general;/usr/lib/libOpenNI.so;
 
 //Value Computed by CMake
 onitouch_SOURCE_DIR:STATIC=/home/richy/Projekte/BA/libavg_Plugin

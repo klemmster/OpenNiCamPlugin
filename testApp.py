@@ -15,7 +15,6 @@ class TestPlugin(AVGApp):
     def init(self):
         g_Player.loadPlugin('onitouch')
         self.plugin = OniTouch.OniTouchPlugin()
-        sleep(1)
         self.manager = self.plugin.getDeviceManager()
         self.oniDev = self.manager.getDevice(1)
 

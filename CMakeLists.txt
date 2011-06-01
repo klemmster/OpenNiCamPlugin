@@ -28,7 +28,8 @@ find_package(LibXml2 REQUIRED)
 set(INCLUDES ${INCLUDES} ${LIBXML2_INCLUDE_DIR})
 set(LIBS ${LIBS} ${LIBXML2_LIBRARIES})
 
-set(LIBS ${LIBS} ${OpenNi})
+#TODO: Properly integrate OpenNI
+set(LIBS ${LIBS} ${OpenNI_LIBRARIES})
 
 
 set(INCLUDES ${INCLUDES} ${AVG_PATH}/libavg/src)
@@ -45,7 +46,7 @@ if(APPLE)
 endif()
 
 if(UNIX AND NOT APPLE)
-    target_link_libraries (onitouch ${LIBS} ${AVG_PATH}/libavg/src/wrapper/.libs/avg.so)
+    target_link_libraries (onitouch ${LIBS} ${AVG_PATH}/libavg/src/wrapper/.libs/avg.so /usr/lib/libOpenNI.so)
 endif()
 
 if(WIN32)

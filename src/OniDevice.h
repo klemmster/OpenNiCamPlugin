@@ -43,6 +43,7 @@ class OniDevice : public IPlaybackEndListener
 
     boost::thread* m_pDeviceThread;
     OniDeviceThread::CQueuePtr m_pDevCmdQueue;
+
 };
 
 typedef boost::shared_ptr<OniDevice> OniDevicePtr;

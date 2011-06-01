@@ -33,7 +33,13 @@ class OniDeviceThread : public WorkerThread<OniDeviceThread>
         bool work();
 
     protected:
+
+        bool RCisOK(const XnStatus rc);
     private:
+
+        xn::Context m_Context;
+        xn::DepthGenerator m_DepthGenerator;
+        xn::ImageGenerator m_ImageGenerator;
 };
 
 } //end namespace avg
