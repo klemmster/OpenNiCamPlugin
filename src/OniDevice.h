@@ -23,6 +23,7 @@
 #include <base/IPlaybackEndListener.h>
 
 #include "OniDeviceThread.h"
+#include "OniCameraNode.h"
 
 namespace avg{
 
@@ -36,10 +37,14 @@ class OniDevice : public IPlaybackEndListener
         OniDevice();
         virtual ~OniDevice();
 
-        void registerCamera(OniCameraType camType);
         void onPlaybackEnd();
+
+        OniCameraNode getRGBCameraNode();
+
     protected:
     private:
+
+    void registerCamera(OniCameraType camType);
 
     boost::thread* m_pDeviceThread;
     OniDeviceThread::CQueuePtr m_pDevCmdQueue;

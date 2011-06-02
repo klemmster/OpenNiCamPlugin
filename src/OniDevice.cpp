@@ -34,6 +34,11 @@ void OniDevice::onPlaybackEnd(){
     m_pDeviceThread->join();
 }
 
+OniCameraNode OniDevice::getRGBCameraNode(){
+    //TODO: Return RealNode
+    return OniCameraNode();
+}
+
 void OniDevice::registerCamera(OniCameraType camType){
     //TODO: REgister Camera
 }

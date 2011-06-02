@@ -179,6 +179,30 @@ src/DepthTouchDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/onitouch.dir/build.make CMakeFiles/onitouch.dir/src/DepthTouchDetector.cpp.s
 .PHONY : src/DepthTouchDetector.cpp.s
 
+src/OniCameraNode.o: src/OniCameraNode.cpp.o
+.PHONY : src/OniCameraNode.o
+
+# target to build an object file
+src/OniCameraNode.cpp.o:
+	$(MAKE) -f CMakeFiles/onitouch.dir/build.make CMakeFiles/onitouch.dir/src/OniCameraNode.cpp.o
+.PHONY : src/OniCameraNode.cpp.o
+
+src/OniCameraNode.i: src/OniCameraNode.cpp.i
+.PHONY : src/OniCameraNode.i
+
+# target to preprocess a source file
+src/OniCameraNode.cpp.i:
+	$(MAKE) -f CMakeFiles/onitouch.dir/build.make CMakeFiles/onitouch.dir/src/OniCameraNode.cpp.i
+.PHONY : src/OniCameraNode.cpp.i
+
+src/OniCameraNode.s: src/OniCameraNode.cpp.s
+.PHONY : src/OniCameraNode.s
+
+# target to generate assembly for a file
+src/OniCameraNode.cpp.s:
+	$(MAKE) -f CMakeFiles/onitouch.dir/build.make CMakeFiles/onitouch.dir/src/OniCameraNode.cpp.s
+.PHONY : src/OniCameraNode.cpp.s
+
 src/OniDevice.o: src/OniDevice.cpp.o
 .PHONY : src/OniDevice.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... src/DepthTouchDetector.o"
 	@echo "... src/DepthTouchDetector.i"
 	@echo "... src/DepthTouchDetector.s"
+	@echo "... src/OniCameraNode.o"
+	@echo "... src/OniCameraNode.i"
+	@echo "... src/OniCameraNode.s"
 	@echo "... src/OniDevice.o"
 	@echo "... src/OniDevice.i"
 	@echo "... src/OniDevice.s"

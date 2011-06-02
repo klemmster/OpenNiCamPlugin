@@ -120,6 +120,8 @@
       </Build>
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/DepthTouchDetector.cpp">
       </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniCameraNode.cpp">
+      </Unit>
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDevice.cpp">
       </Unit>
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDeviceManager.cpp">
@@ -129,6 +131,8 @@
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniTouchPlugin.cpp">
       </Unit>
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/DepthTouchDetector.h">
+      </Unit>
+      <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniCameraNode.h">
       </Unit>
       <Unit filename="/home/richy/Projekte/BA/libavg_Plugin/src/OniDevice.h">
       </Unit>
