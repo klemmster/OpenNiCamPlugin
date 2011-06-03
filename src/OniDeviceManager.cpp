@@ -26,10 +26,10 @@ OniDeviceManager::~OniDeviceManager()
     AVG_TRACE(Logger::PLUGIN, "Deconstructed OniDeviceManager")
 }
 
-const OniDevice* OniDeviceManager::getOniDevice(int number){
-    //TODO: Save & pass return by reference
+const OniDevicePtr OniDeviceManager::getOniDevice(int number){
+    //TODO: Check DevicePtr
     myDevicePtr = OniDevicePtr(new OniDevice());
-    return myDevicePtr.get();
+    return myDevicePtr;
 }
 
 } //End namespace avg

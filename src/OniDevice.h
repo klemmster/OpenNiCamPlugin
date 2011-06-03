@@ -16,20 +16,15 @@
 #include <api.h>
 
 //Header AVG
-#include <imaging/Camera.h>
 #include <base/Logger.h>
 #include <base/Exception.h>
 #include <graphics/Bitmap.h>
 #include <base/IPlaybackEndListener.h>
 
 #include "OniDeviceThread.h"
-#include "OniCameraNode.h"
+#include "OniCamera.h"
 
 namespace avg{
-
-enum OniCameraType{
-    ONI_RGB_CAMERA, ONI_DEPTH_CAMERA
-};
 
 class OniDevice : public IPlaybackEndListener
 {
@@ -38,16 +33,13 @@ class OniDevice : public IPlaybackEndListener
         virtual ~OniDevice();
 
         void onPlaybackEnd();
-
-        OniCameraNode getRGBCameraNode();
-
+        OniCameraPtr getCamera(OniCameraType type);
     protected:
     private:
 
-    void registerCamera(OniCameraType camType);
-
     boost::thread* m_pDeviceThread;
     OniDeviceThread::CQueuePtr m_pDevCmdQueue;
+    OniCameraPtr m_pOniCam;
 
 };
 

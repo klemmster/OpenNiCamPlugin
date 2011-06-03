@@ -1,46 +1,20 @@
 #include "OniTouchPlugin.h"
 
 #include <wrapper/WrapHelper.h>
+#include <wrapper/raw_constructor.hpp>
+#include "OniCameraNode.h"
 
 using namespace boost::python;
-namespace avg {
 
-OniTouchPlugin::OniTouchPlugin()
-{
-    oniDevManagerPtr = OniDeviceManagerPtr(new OniDeviceManager());
-    ObjectCounter::get()->incRef(&typeid(*this));
-    AVG_TRACE(Logger::PLUGIN, "Construct OniTouchPlugin");
-}
-
-OniTouchPlugin::~OniTouchPlugin()
-{
-    ObjectCounter::get()->decRef(&typeid(*this));
-    AVG_TRACE(Logger::PLUGIN, "Deconstruct OniTouchPlugin");
-}
-
-const OniDeviceManager* OniTouchPlugin::getOniDevManager(){
-    return oniDevManagerPtr.get();
-}
-
-}//End namespace avg
+char OniCameraNodeName[] = "OniCameraNode";
 
 BOOST_PYTHON_MODULE(OniTouchPlugin)
 {
-    class_<avg::OniDeviceManager> ("OniDeviceManager")
-        .def(init<>())
-        .def("getDevice", &avg::OniDeviceManager::getOniDevice,
-                          return_value_policy<manage_new_object>())
-    ;
 
-    class_<avg::OniDevice> ("OniDevice", no_init)
-        .def(init<>())
-    ;
-
-    class_<avg::OniTouchPlugin, boost::noncopyable>("OniTouchPlugin", no_init)
-     .def(init<>())
-     .def("getDeviceManager", &avg::OniTouchPlugin::getOniDevManager,
-                              return_value_policy<manage_new_object>())
-    ;
+    class_<avg::OniCameraNode, bases<avg::AreaNode>, boost::shared_ptr<avg::OniCameraNode>, boost::noncopyable>("OniCameraNode", no_init)
+        .def("__init__", raw_constructor(createNode<OniCameraNodeName>))
+        .def("activateDevice", &avg::OniCameraNode::activateDevice)
+        ;
 }
 
 AVG_PLUGIN_API void registerPlugin()
@@ -49,4 +23,10 @@ AVG_PLUGIN_API void registerPlugin()
     object mainModule(handle<>(borrowed(PyImport_AddModule("__main__"))));
     object swipeModule(handle<>(PyImport_ImportModule("OniTouchPlugin")));
     mainModule.attr("OniTouch") = swipeModule;
+
+    avg::NodeDefinition myNodeDefinition = avg::OniCameraNode::createNodeDefinition();
+    const char* allowedParentNodeNames[] = {"avg", "div", "canvas", 0};
+
+    // Register this node type
+    avg::Player::get()->registerNodeType(myNodeDefinition, allowedParentNodeNames);
 }

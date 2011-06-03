@@ -13,17 +13,24 @@ namespace avg {
 class AVG_PLUGIN OniDeviceManager
 {
 public:
-    OniDeviceManager();
-    virtual ~OniDeviceManager();
 
-    const OniDevice* getOniDevice(int number);
+    const OniDevicePtr getOniDevice(int number);
+
+    static OniDeviceManager& get() {
+        static OniDeviceManager instance;
+        return instance;
+    }
+
 private:
+
+    OniDeviceManager();
+    OniDeviceManager(const OniDeviceManager&) {};
+    ~OniDeviceManager();
 
     //TODO: MAP for devices or something
     OniDevicePtr myDevicePtr;
 };
 
-typedef boost::shared_ptr<OniDeviceManager> OniDeviceManagerPtr;
 }//End namespace avg
 
 #endif

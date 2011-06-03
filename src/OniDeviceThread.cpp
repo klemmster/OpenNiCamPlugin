@@ -13,10 +13,10 @@
 
 namespace avg {
 
-OniDeviceThread::OniDeviceThread(CQueue& CmdQ,const std::string& threadName):
+OniDeviceThread::OniDeviceThread(BitmapPtr rgbBitmap, CQueue& CmdQ,const std::string& threadName):
     WorkerThread<OniDeviceThread>(threadName, CmdQ)
 {
-
+    m_pRGBImage = rgbBitmap;
 }
 
 OniDeviceThread::~OniDeviceThread()
@@ -32,6 +32,8 @@ bool OniDeviceThread::init(){
     RCisOK(rc);
     rc = m_DepthGenerator.Create(m_Context);
     RCisOK(rc);
+    rc = m_ImageGenerator.Create(m_Context);
+    RCisOK(rc);
     rc = m_Context.StartGeneratingAll();
     RCisOK(rc);
     return true;
@@ -44,8 +46,9 @@ void OniDeviceThread::deinit(){
 bool OniDeviceThread::work(){
     XnStatus rc = m_Context.WaitAndUpdateAll();
     if(RCisOK(rc)){
-        AVG_TRACE(Logger::PLUGIN, "Working");
-        //TODO: Get Depth & Image Map
+        const XnUInt8* pRGBPixel = m_ImageGenerator.GetImageMap();
+        m_pRGBImage->setPixels(pRGBPixel);
+        //TODO: Get DepthMap
     }
     return true;
 }

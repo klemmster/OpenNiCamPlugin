@@ -14,9 +14,13 @@ class TestPlugin(AVGApp):
 
     def init(self):
         g_Player.loadPlugin('onitouch')
-        self.plugin = OniTouch.OniTouchPlugin()
-        self.manager = self.plugin.getDeviceManager()
-        self.oniDev = self.manager.getDevice(1)
+        #self.plugin = OniTouch.OniTouchPlugin()
+        #self.manager = self.plugin.getDeviceManager()
+        #self.oniDev = self.manager.getDevice(1)
+        #node = self.oniDev.getRGBCameraNode()
+        node = OniTouch.OniCameraNode(size=(640, 480))
+        node.activateDevice(0)
+        g_Player.getRootNode().appendChild(node)
 
 if __name__ == '__main__':
     TestPlugin.start(resolution=(800, 480))
