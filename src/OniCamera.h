@@ -26,13 +26,16 @@ enum OniCameraType{
 class OniCamera
 {
     public:
-        OniCamera(BitmapPtr imagePtr);
-        BitmapPtr getBitmapPtr(){ return m_pImage;};
+        OniCamera(OniCameraType type);
+        BitmapPtr& getBitmapPtr(){ return m_pImage;};
+        void setBitmapPtr(BitmapPtr rhs){ m_pImage = rhs;};
+        OniCameraType getType() { return m_type; };
         virtual ~OniCamera();
     protected:
     private:
 
     BitmapPtr m_pImage;
+    OniCameraType m_type;
 };
 
 typedef boost::shared_ptr<OniCamera> OniCameraPtr;

@@ -22,13 +22,12 @@ public:
     }
 
 private:
-
+    typedef std::map<int, OniDevicePtr> DeviceIDMap;
     OniDeviceManager();
     OniDeviceManager(const OniDeviceManager&) {};
     ~OniDeviceManager();
 
-    //TODO: MAP for devices or something
-    OniDevicePtr myDevicePtr;
+    DeviceIDMap m_DevIDMap;
 };
 
 }//End namespace avg

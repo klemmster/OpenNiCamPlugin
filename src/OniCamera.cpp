@@ -15,10 +15,14 @@
 
 namespace avg{
 
-OniCamera::OniCamera(BitmapPtr imagePtr):
-    m_pImage(imagePtr)
+OniCamera::OniCamera(OniCameraType type):
+    m_type(type)
 {
-    //ctor
+    if(type == ONI_RGB_CAMERA){
+        m_pImage = BitmapPtr(new Bitmap(IntPoint(640, 480), R8G8B8));
+    }else if (type == ONI_DEPTH_CAMERA){
+        m_pImage = BitmapPtr(new Bitmap(IntPoint(640, 480), I16));
+    }
 }
 
 OniCamera::~OniCamera()

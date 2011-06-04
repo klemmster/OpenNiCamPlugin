@@ -18,9 +18,20 @@ class TestPlugin(AVGApp):
         #self.manager = self.plugin.getDeviceManager()
         #self.oniDev = self.manager.getDevice(1)
         #node = self.oniDev.getRGBCameraNode()
+        cam1Container = avg.DivNode(size=(800, 600))
         node = OniTouch.OniCameraNode(size=(640, 480))
         node.activateDevice(0)
-        g_Player.getRootNode().appendChild(node)
+        node.activateCamera(OniTouch.ONI_RGB_CAMERA)
+        cam1Container.appendChild(node)
+
+        cam2Container = avg.DivNode(size=(800, 600), pos=(640, 0))
+        node = OniTouch.OniCameraNode(size=(640, 480))
+        node.activateDevice(0)
+        node.activateCamera(OniTouch.ONI_DEPTH_CAMERA)
+        cam2Container.appendChild(node)
+
+        g_Player.getRootNode().appendChild(cam1Container)
+        g_Player.getRootNode().appendChild(cam2Container)
 
 if __name__ == '__main__':
-    TestPlugin.start(resolution=(800, 480))
+    TestPlugin.start(resolution=(1280, 480))

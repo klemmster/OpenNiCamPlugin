@@ -17,9 +17,7 @@ namespace avg{
 OniDevice::OniDevice()
 {
    m_pDevCmdQueue = OniDeviceThread::CQueuePtr(new OniDeviceThread::CQueue);
-   BitmapPtr rgbImage = BitmapPtr(new Bitmap(IntPoint(640, 480), R8G8B8));
-   m_pDeviceThread = new boost::thread(OniDeviceThread(rgbImage, *m_pDevCmdQueue, std::string("DeviceThread")));
-   m_pOniCam = OniCameraPtr(new OniCamera(rgbImage));
+   m_pDeviceThread = new boost::thread(OniDeviceThread(*m_pDevCmdQueue, std::string("DeviceThread")));
    Player::get()->registerPlaybackEndListener(this);
    AVG_TRACE(Logger::PLUGIN, "Create OniDevice");
 }
@@ -37,7 +35,9 @@ void OniDevice::onPlaybackEnd(){
 }
 
 OniCameraPtr OniDevice::getCamera(OniCameraType type){
-    //TODO: Actually do different Things with different types
+    m_pOniCam = OniCameraPtr(new OniCamera(type));
+    BitmapPtr imagePtr = m_pOniCam->getBitmapPtr();
+    m_pDevCmdQueue->pushCmd(boost::bind(&OniDeviceThread::setBitmapPtr, _1, m_pOniCam));
     return m_pOniCam;
 }
 

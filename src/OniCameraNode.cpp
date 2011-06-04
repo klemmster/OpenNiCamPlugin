@@ -32,7 +32,6 @@ NodeDefinition OniCameraNode::createNodeDefinition(){
 void OniCameraNode::setRenderingEngines(DisplayEngine* pDisplayEngine,
                                   AudioEngine* pAudioEngine){
 	RasterNode::setRenderingEngines(pDisplayEngine, pAudioEngine);
-	//TODO: Fix getSurface
     getSurface()->create(IntPoint(640, 480), R8G8B8A8);
 }
 
@@ -43,9 +42,12 @@ void OniCameraNode::maybeRender(const DRect& rect){
 void OniCameraNode::render (const DRect& Rect){
 
     if(m_pImage){
-    AVG_TRACE(Logger::PLUGIN, "Render");
     BitmapPtr pBmp = getSurface()->lockBmp();
+    const unsigned char * pixels = m_pImage->getPixels();
+    AVG_TRACE(Logger::PLUGIN, "Value: " << (int)pixels[960]);
+    AVG_TRACE(Logger::PLUGIN, "Value1: " << (int)pixels[961]);
     pBmp->copyPixels(*m_pImage);
+//    AVG_TRACE(Logger::PLUGIN, "Pixel - Format:" << m_pImage->getPixelFormat())
     getSurface()->unlockBmps();
 
     bind();
@@ -55,11 +57,10 @@ void OniCameraNode::render (const DRect& Rect){
 
 void OniCameraNode::activateDevice(int id){
     m_pOniDev = OniDeviceManager::get().getOniDevice(id);
-    activateCamera(ONI_RGB_CAMERA);
 }
 
 void OniCameraNode::activateCamera(OniCameraType type ){
-    m_pImage = m_pOniDev->getCamera(ONI_RGB_CAMERA)->getBitmapPtr();
+    m_pImage = m_pOniDev->getCamera(type)->getBitmapPtr();
 }
 
 }//End namespace avg

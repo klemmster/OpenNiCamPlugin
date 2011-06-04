@@ -26,10 +26,16 @@ OniDeviceManager::~OniDeviceManager()
     AVG_TRACE(Logger::PLUGIN, "Deconstructed OniDeviceManager")
 }
 
-const OniDevicePtr OniDeviceManager::getOniDevice(int number){
-    //TODO: Check DevicePtr
-    myDevicePtr = OniDevicePtr(new OniDevice());
-    return myDevicePtr;
+const OniDevicePtr OniDeviceManager::getOniDevice(int id){
+    std::map<int, OniDevicePtr>::iterator it;
+    it = m_DevIDMap.find(id);
+    if(it == m_DevIDMap.end()){
+        OniDevicePtr devPtr = OniDevicePtr(new OniDevice());
+        m_DevIDMap.insert(DeviceIDMap::value_type(id, devPtr));
+        return devPtr;
+    }else{
+        return it->second;
+    }
 }
 
 } //End namespace avg

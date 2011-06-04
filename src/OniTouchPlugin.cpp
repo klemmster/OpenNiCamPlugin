@@ -14,6 +14,13 @@ BOOST_PYTHON_MODULE(OniTouchPlugin)
     class_<avg::OniCameraNode, bases<avg::AreaNode>, boost::shared_ptr<avg::OniCameraNode>, boost::noncopyable>("OniCameraNode", no_init)
         .def("__init__", raw_constructor(createNode<OniCameraNodeName>))
         .def("activateDevice", &avg::OniCameraNode::activateDevice)
+        .def("activateCamera", &avg::OniCameraNode::activateCamera)
+        ;
+
+    enum_<avg::OniCameraType>("OniCameraType")
+        .value("ONI_RGB_CAMERA", avg::ONI_RGB_CAMERA)
+        .value("ONI_DEPTH_CAMERA", avg::ONI_DEPTH_CAMERA)
+        .export_values()
         ;
 }
 

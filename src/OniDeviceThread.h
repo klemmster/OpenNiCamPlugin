@@ -22,17 +22,21 @@
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
+#include "OniCamera.h"
+
 namespace avg {
 
 class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
 {
     public:
-        OniDeviceThread(BitmapPtr rgbBitmap, CQueue& CmdQ,const std::string& threadName);
+        OniDeviceThread(CQueue& CmdQ,const std::string& threadName);
         virtual ~OniDeviceThread();
 
         bool init();
         void deinit();
         bool work();
+
+        void setBitmapPtr(OniCameraPtr camPtr);
 
     protected:
 
