@@ -1,4 +1,4 @@
-#include "OniTouchPlugin.h"
+#include "OniCamPlugin.h"
 
 #include <wrapper/WrapHelper.h>
 #include <wrapper/raw_constructor.hpp>
@@ -8,10 +8,10 @@ using namespace boost::python;
 
 char OniCameraNodeName[] = "OniCameraNode";
 
-BOOST_PYTHON_MODULE(OniTouchPlugin)
+BOOST_PYTHON_MODULE(OniCamPlugin)
 {
 
-    class_<avg::OniCameraNode, bases<avg::AreaNode>, boost::shared_ptr<avg::OniCameraNode>, boost::noncopyable>("OniCameraNode", no_init)
+    class_<avg::OniCameraNode, bases<avg::RasterNode>, boost::shared_ptr<avg::OniCameraNode>, boost::noncopyable>("OniCameraNode", no_init)
         .def("__init__", raw_constructor(createNode<OniCameraNodeName>))
         .def("activateDevice", &avg::OniCameraNode::activateDevice)
         .def("activateCamera", &avg::OniCameraNode::activateCamera)
@@ -26,10 +26,10 @@ BOOST_PYTHON_MODULE(OniTouchPlugin)
 
 AVG_PLUGIN_API void registerPlugin()
 {
-    initOniTouchPlugin();
+    initOniCamPlugin();
     object mainModule(handle<>(borrowed(PyImport_AddModule("__main__"))));
-    object swipeModule(handle<>(PyImport_ImportModule("OniTouchPlugin")));
-    mainModule.attr("OniTouch") = swipeModule;
+    object swipeModule(handle<>(PyImport_ImportModule("OniCamPlugin")));
+    mainModule.attr("OniCam") = swipeModule;
 
     avg::NodeDefinition myNodeDefinition = avg::OniCameraNode::createNodeDefinition();
     const char* allowedParentNodeNames[] = {"avg", "div", "canvas", 0};

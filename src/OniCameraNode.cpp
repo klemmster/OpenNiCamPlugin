@@ -44,8 +44,6 @@ void OniCameraNode::render (const DRect& Rect){
     if(m_pImage){
     BitmapPtr pBmp = getSurface()->lockBmp();
     const unsigned char * pixels = m_pImage->getPixels();
-    AVG_TRACE(Logger::PLUGIN, "Value: " << (int)pixels[960]);
-    AVG_TRACE(Logger::PLUGIN, "Value1: " << (int)pixels[961]);
     pBmp->copyPixels(*m_pImage);
 //    AVG_TRACE(Logger::PLUGIN, "Pixel - Format:" << m_pImage->getPixelFormat())
     getSurface()->unlockBmps();

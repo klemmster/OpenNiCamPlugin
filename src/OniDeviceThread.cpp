@@ -49,23 +49,8 @@ void OniDeviceThread::deinit(){
 bool OniDeviceThread::work(){
     XnStatus rc = m_Context.WaitAndUpdateAll();
     if(RCisOK(rc)){
-        const XnUInt8* pRGBPixel = m_ImageGenerator.GetImageMap();
-        m_pRGBImage->setPixels(pRGBPixel);
-
-        //DepthMap
-        const XnDepthPixel* pDepthMap = m_DepthGenerator.GetDepthMap();
-        uint8_t * map = new unsigned char[640*480*2]; //Times two, because it's 16Bits
-        unsigned int pointer = 0;
-        for(unsigned int y=0; y<480; y++){
-            for(unsigned int x=0; x<640; x++){
-                const XnDepthPixel val = pDepthMap[x+y*640];
-                map[pointer+1] = 0x00 | val;
-                map[pointer] = val >> 8;
-                pointer+= 2;
-            }
-        }
-        m_pDepthImage->setPixels(map);
-        delete map;
+        m_pRGBImage->setPixels(m_ImageGenerator.GetImageMap());
+        m_pDepthImage->setPixels((unsigned char*)m_DepthGenerator.GetDepthMap());
     }
     return true;
 }

@@ -13,21 +13,21 @@ class TestPlugin(AVGApp):
     oniDev = None
 
     def init(self):
-        g_Player.loadPlugin('onitouch')
-        #self.plugin = OniTouch.OniTouchPlugin()
+        g_Player.loadPlugin('onicam')
+        #self.plugin = OniCam.OniTouchPlugin()
         #self.manager = self.plugin.getDeviceManager()
         #self.oniDev = self.manager.getDevice(1)
         #node = self.oniDev.getRGBCameraNode()
         cam1Container = avg.DivNode(size=(800, 600))
-        node = OniTouch.OniCameraNode(size=(640, 480))
+        node = OniCam.OniCameraNode(size=(640, 480))
         node.activateDevice(0)
-        node.activateCamera(OniTouch.ONI_RGB_CAMERA)
+        node.activateCamera(OniCam.ONI_RGB_CAMERA)
         cam1Container.appendChild(node)
 
         cam2Container = avg.DivNode(size=(800, 600), pos=(640, 0))
-        node = OniTouch.OniCameraNode(size=(640, 480))
+        node = OniCam.OniCameraNode(size=(640, 480))
         node.activateDevice(0)
-        node.activateCamera(OniTouch.ONI_DEPTH_CAMERA)
+        node.activateCamera(OniCam.ONI_DEPTH_CAMERA)
         cam2Container.appendChild(node)
 
         g_Player.getRootNode().appendChild(cam1Container)

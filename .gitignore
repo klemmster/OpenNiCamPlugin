@@ -8,6 +8,7 @@
 ##GitIgnore
 CMakeFiles/*
 cmake_install.cmake
+Makefile
 
 ##PYTHON
 *.mo
@@ -52,3 +53,4 @@ dist
 #codeblocks files
 *.layout
 *.depend
+.cbp

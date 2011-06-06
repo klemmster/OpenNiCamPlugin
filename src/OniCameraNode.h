@@ -15,7 +15,7 @@
 #define AVG_PLUGIN
 #include <api.h>
 
-#include <player/RasterNode.h>
+#include <player/CameraNode.h>
 #include <graphics/Bitmap.h>
 #include <player/NodeDefinition.h>
 #include <base/Logger.h>
