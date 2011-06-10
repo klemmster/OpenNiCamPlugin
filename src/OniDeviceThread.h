@@ -16,27 +16,28 @@
 #include <api.h>
 
 #include <base/WorkerThread.h>
+#include <base/Queue.h>
 #include <graphics/Bitmap.h>
 
 //OpenNI - Header
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 
-#include "OniCamera.h"
-
 namespace avg {
 
 class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
 {
     public:
-        OniDeviceThread(CQueue& CmdQ,const std::string& threadName);
+        typedef Queue<Bitmap> BmpQueue;
+        typedef boost::shared_ptr<BmpQueue>BitmapQueuePtr;
+
+        OniDeviceThread(CQueue& CmdQ,const std::string& threadName,
+                BitmapQueuePtr rgbQueue, BitmapQueuePtr depthQueue);
         virtual ~OniDeviceThread();
 
         bool init();
         void deinit();
         bool work();
-
-        void setBitmapPtr(OniCameraPtr camPtr);
 
     protected:
 
@@ -50,8 +51,8 @@ class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
         XnMapOutputMode rgbConfig;
         //TODO: Improvement: Use Image/Depth Metadata
 
-        BitmapPtr m_pRGBImage;
-        BitmapPtr m_pDepthImage;
+        BitmapQueuePtr m_pQrgb;
+        BitmapQueuePtr m_pQdepth;
 };
 
 } //end namespace avg

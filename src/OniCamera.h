@@ -17,6 +17,8 @@
 
 #include <graphics/Bitmap.h>
 
+#include "OniDeviceThread.h"
+
 namespace avg{
 
 enum OniCameraType{
@@ -26,16 +28,18 @@ enum OniCameraType{
 class OniCamera
 {
     public:
-        OniCamera(OniCameraType type);
-        BitmapPtr& getBitmapPtr(){ return m_pImage;};
-        void setBitmapPtr(BitmapPtr rhs){ m_pImage = rhs;};
+        OniCamera(OniCameraType type, OniDeviceThread::BitmapQueuePtr bmpQueuePtr);
         OniCameraType getType() { return m_type; };
+
+        OniDeviceThread::BitmapQueuePtr getBmpQueue();
+        BitmapPtr getBitmap(bool blocking = true);
         virtual ~OniCamera();
     protected:
     private:
 
-    BitmapPtr m_pImage;
+    OniDeviceThread::BitmapQueuePtr m_pQBmpPtr;
     OniCameraType m_type;
+    BitmapPtr m_pLastImage;
 };
 
 typedef boost::shared_ptr<OniCamera> OniCameraPtr;

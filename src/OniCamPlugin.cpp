@@ -15,6 +15,7 @@ BOOST_PYTHON_MODULE(OniCamPlugin)
         .def("__init__", raw_constructor(createNode<OniCameraNodeName>))
         .def("activateDevice", &avg::OniCameraNode::activateDevice)
         .def("activateCamera", &avg::OniCameraNode::activateCamera)
+        .def("getBitmap", &avg::OniCameraNode::getBitmap)
         ;
 
     enum_<avg::OniCameraType>("OniCameraType")

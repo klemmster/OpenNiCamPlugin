@@ -13,8 +13,11 @@
 
 namespace avg {
 
-OniDeviceThread::OniDeviceThread(CQueue& CmdQ,const std::string& threadName):
-    WorkerThread<OniDeviceThread>(threadName, CmdQ)
+OniDeviceThread::OniDeviceThread(CQueue& CmdQ,const std::string& threadName,
+            BitmapQueuePtr rgbQueue, BitmapQueuePtr depthQueue):
+    WorkerThread<OniDeviceThread>(threadName, CmdQ),
+    m_pQrgb(rgbQueue),
+    m_pQdepth(depthQueue)
 {
 }
 
@@ -25,9 +28,6 @@ OniDeviceThread::~OniDeviceThread()
 
 bool OniDeviceThread::init(){
     AVG_TRACE(Logger::PLUGIN, "Init Thread");
-
-    m_pDepthImage = BitmapPtr(new Bitmap(IntPoint(640, 480), I16));
-    m_pRGBImage = BitmapPtr(new Bitmap(IntPoint(640, 480), R8G8B8));
 
     XnStatus rc = XN_STATUS_OK;
     xn::EnumerationErrors errors;
@@ -49,21 +49,15 @@ void OniDeviceThread::deinit(){
 bool OniDeviceThread::work(){
     XnStatus rc = m_Context.WaitAndUpdateAll();
     if(RCisOK(rc)){
-        m_pRGBImage->setPixels(m_ImageGenerator.GetImageMap());
-        m_pDepthImage->setPixels((unsigned char*)m_DepthGenerator.GetDepthMap());
+        IntPoint size(640, 480);
+        m_pQrgb->push(BitmapPtr(new Bitmap(size, R8G8B8,
+                (unsigned char *)m_ImageGenerator.GetImageMap(), size.x*3, false)));
+        m_pQdepth->push(BitmapPtr(new Bitmap(size, I16,
+                (unsigned char*)m_DepthGenerator.GetDepthMap(), size.x*2, false )));
+    }else{
+        return false;
     }
     return true;
-}
-
-void OniDeviceThread::setBitmapPtr(OniCameraPtr camPtr){
-    OniCameraType type = camPtr->getType();
-    if(type == ONI_DEPTH_CAMERA){
-        m_pDepthImage = camPtr->getBitmapPtr();
-        return;
-    }else if(type == ONI_RGB_CAMERA){
-        m_pRGBImage = camPtr->getBitmapPtr();
-        return;
-    }
 }
 
 bool OniDeviceThread::RCisOK(const XnStatus rc){

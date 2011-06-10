@@ -17,7 +17,11 @@ namespace avg{
 OniDevice::OniDevice()
 {
    m_pDevCmdQueue = OniDeviceThread::CQueuePtr(new OniDeviceThread::CQueue);
-   m_pDeviceThread = new boost::thread(OniDeviceThread(*m_pDevCmdQueue, std::string("DeviceThread")));
+   m_pQPtrDepthBmpPtr = OniDeviceThread::BitmapQueuePtr(new Queue<Bitmap>()); //TODO: CHeck why typedef isnt working here
+   m_pQPtrRGBBmpPtr = OniDeviceThread::BitmapQueuePtr( new Queue<Bitmap>());
+
+   m_pDeviceThread = new boost::thread(OniDeviceThread(*m_pDevCmdQueue,
+            std::string("DeviceThread"), m_pQPtrRGBBmpPtr, m_pQPtrDepthBmpPtr ));
    Player::get()->registerPlaybackEndListener(this);
    AVG_TRACE(Logger::PLUGIN, "Create OniDevice");
 }
@@ -35,10 +39,12 @@ void OniDevice::onPlaybackEnd(){
 }
 
 OniCameraPtr OniDevice::getCamera(OniCameraType type){
-    m_pOniCam = OniCameraPtr(new OniCamera(type));
-    BitmapPtr imagePtr = m_pOniCam->getBitmapPtr();
-    m_pDevCmdQueue->pushCmd(boost::bind(&OniDeviceThread::setBitmapPtr, _1, m_pOniCam));
-    return m_pOniCam;
+    if(type==ONI_RGB_CAMERA){
+        return OniCameraPtr(new OniCamera(type, m_pQPtrRGBBmpPtr));
+    }else if(type==ONI_DEPTH_CAMERA){
+        return OniCameraPtr(new OniCamera(type, m_pQPtrDepthBmpPtr));
+    }
+    throw Exception(AVG_ERR_OPTION_UNKNOWN, "Unsupported CameraType.");
 }
 
 }//end namespace avg

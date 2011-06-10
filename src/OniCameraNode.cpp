@@ -36,16 +36,17 @@ void OniCameraNode::setRenderingEngines(DisplayEngine* pDisplayEngine,
 }
 
 void OniCameraNode::maybeRender(const DRect& rect){
-    render(rect);
+    if(m_pCamera.get()){
+        render(rect);
+    }
 }
 
-void OniCameraNode::render (const DRect& Rect){
+void OniCameraNode::render(const DRect& Rect){
 
-    if(m_pImage){
+    if(m_pCamera.get()){
     BitmapPtr pBmp = getSurface()->lockBmp();
-    const unsigned char * pixels = m_pImage->getPixels();
-    pBmp->copyPixels(*m_pImage);
-//    AVG_TRACE(Logger::PLUGIN, "Pixel - Format:" << m_pImage->getPixelFormat())
+
+    pBmp->copyPixels(*(m_pCamera->getBitmap(true)));
     getSurface()->unlockBmps();
 
     bind();
@@ -58,7 +59,15 @@ void OniCameraNode::activateDevice(int id){
 }
 
 void OniCameraNode::activateCamera(OniCameraType type ){
-    m_pImage = m_pOniDev->getCamera(type)->getBitmapPtr();
+    m_pCamera = m_pOniDev->getCamera(type);
+}
+
+BitmapPtr OniCameraNode::getBitmap(bool blocking){
+    if(m_pCamera.get()){
+        return m_pCamera->getBitmap(blocking);
+    }else{
+        throw Exception(AVG_ERR_NO_NODE, "Activate Camera first");
+    }
 }
 
 }//End namespace avg

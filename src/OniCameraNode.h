@@ -19,6 +19,7 @@
 #include <graphics/Bitmap.h>
 #include <player/NodeDefinition.h>
 #include <base/Logger.h>
+#include <base/Exception.h>
 #include <player/OGLSurface.h>
 
 #include "OniDeviceManager.h"
@@ -42,11 +43,13 @@ class AVG_API OniCameraNode : public RasterNode
         void activateDevice(int id = 0);
         void activateCamera(OniCameraType type = ONI_RGB_CAMERA);
 
+        BitmapPtr getBitmap(bool blocking=false);
+
     protected:
     private:
 
         OniDevicePtr m_pOniDev;
-        BitmapPtr m_pImage;
+        OniCameraPtr m_pCamera;
 };
 
 typedef boost::shared_ptr<OniCameraNode> OniCameraNodePtr;

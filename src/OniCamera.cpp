@@ -15,14 +15,23 @@
 
 namespace avg{
 
-OniCamera::OniCamera(OniCameraType type):
-    m_type(type)
+OniCamera::OniCamera(OniCameraType type, OniDeviceThread::BitmapQueuePtr bmpPtrQueuePtr):
+    m_type(type),
+    m_pQBmpPtr(bmpPtrQueuePtr)
 {
-    if(type == ONI_RGB_CAMERA){
-        m_pImage = BitmapPtr(new Bitmap(IntPoint(640, 480), R8G8B8));
-    }else if (type == ONI_DEPTH_CAMERA){
-        m_pImage = BitmapPtr(new Bitmap(IntPoint(640, 480), I16));
+}
+
+OniDeviceThread::BitmapQueuePtr OniCamera::getBmpQueue(){
+    return m_pQBmpPtr;
+}
+
+BitmapPtr OniCamera::getBitmap(bool blocking){
+    AVG_TRACE(Logger::PLUGIN, "ImageQueueSize: " << m_pQBmpPtr->size());
+    BitmapPtr image = m_pQBmpPtr->pop(blocking);
+    if(image.get()){
+        m_pLastImage = image;
     }
+    return m_pLastImage;
 }
 
 OniCamera::~OniCamera()

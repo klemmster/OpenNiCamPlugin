@@ -21,7 +21,6 @@
 #include <graphics/Bitmap.h>
 #include <base/IPlaybackEndListener.h>
 
-#include "OniDeviceThread.h"
 #include "OniCamera.h"
 
 namespace avg{
@@ -41,6 +40,8 @@ class OniDevice : public IPlaybackEndListener
     OniDeviceThread::CQueuePtr m_pDevCmdQueue;
     OniCameraPtr m_pOniCam;
 
+    OniDeviceThread::BitmapQueuePtr m_pQPtrDepthBmpPtr;
+    OniDeviceThread::BitmapQueuePtr m_pQPtrRGBBmpPtr;
 };
 
 typedef boost::shared_ptr<OniDevice> OniDevicePtr;
