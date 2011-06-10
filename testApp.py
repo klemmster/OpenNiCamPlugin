@@ -33,5 +33,7 @@ class TestPlugin(AVGApp):
         g_Player.getRootNode().appendChild(cam1Container)
         g_Player.getRootNode().appendChild(cam2Container)
 
+        camera = node.getCamera()
+
 if __name__ == '__main__':
     TestPlugin.start(resolution=(1280, 480))

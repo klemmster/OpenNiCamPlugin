@@ -16,6 +16,7 @@
 #include <api.h>
 
 #include <base/WorkerThread.h>
+#include <video/VideoDecoderThread.h>
 #include <base/Queue.h>
 #include <graphics/Bitmap.h>
 
@@ -28,8 +29,6 @@ namespace avg {
 class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
 {
     public:
-        typedef Queue<Bitmap> BmpQueue;
-        typedef boost::shared_ptr<BmpQueue>BitmapQueuePtr;
 
         OniDeviceThread(CQueue& CmdQ,const std::string& threadName,
                 BitmapQueuePtr rgbQueue, BitmapQueuePtr depthQueue);

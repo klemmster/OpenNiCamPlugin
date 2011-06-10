@@ -44,6 +44,7 @@ class AVG_API OniCameraNode : public RasterNode
         void activateCamera(OniCameraType type = ONI_RGB_CAMERA);
 
         BitmapPtr getBitmap(bool blocking=false);
+        OniCameraPtr getCamera();
 
     protected:
     private:

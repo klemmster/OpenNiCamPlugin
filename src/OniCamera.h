@@ -28,16 +28,16 @@ enum OniCameraType{
 class OniCamera
 {
     public:
-        OniCamera(OniCameraType type, OniDeviceThread::BitmapQueuePtr bmpQueuePtr);
+        OniCamera(OniCameraType type, BitmapQueuePtr bmpQueuePtr);
         OniCameraType getType() { return m_type; };
 
-        OniDeviceThread::BitmapQueuePtr getBmpQueue();
+        BitmapQueuePtr getBmpQueue();
         BitmapPtr getBitmap(bool blocking = true);
         virtual ~OniCamera();
     protected:
     private:
 
-    OniDeviceThread::BitmapQueuePtr m_pQBmpPtr;
+    BitmapQueuePtr m_pQBmpPtr;
     OniCameraType m_type;
     BitmapPtr m_pLastImage;
 };

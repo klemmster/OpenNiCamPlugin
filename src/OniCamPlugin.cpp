@@ -16,6 +16,10 @@ BOOST_PYTHON_MODULE(OniCamPlugin)
         .def("activateDevice", &avg::OniCameraNode::activateDevice)
         .def("activateCamera", &avg::OniCameraNode::activateCamera)
         .def("getBitmap", &avg::OniCameraNode::getBitmap)
+        .def("getCamera", &avg::OniCameraNode::getCamera)
+        ;
+
+    class_<avg::OniCamera, boost::shared_ptr<avg::OniCamera>, boost::noncopyable>("OniCamera", no_init)
         ;
 
     enum_<avg::OniCameraType>("OniCameraType")

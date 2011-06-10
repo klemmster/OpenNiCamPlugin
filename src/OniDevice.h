@@ -40,8 +40,8 @@ class OniDevice : public IPlaybackEndListener
     OniDeviceThread::CQueuePtr m_pDevCmdQueue;
     OniCameraPtr m_pOniCam;
 
-    OniDeviceThread::BitmapQueuePtr m_pQPtrDepthBmpPtr;
-    OniDeviceThread::BitmapQueuePtr m_pQPtrRGBBmpPtr;
+    BitmapQueuePtr m_pQPtrDepthBmpPtr;
+    BitmapQueuePtr m_pQPtrRGBBmpPtr;
 };
 
 typedef boost::shared_ptr<OniDevice> OniDevicePtr;

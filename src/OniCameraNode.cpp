@@ -44,13 +44,15 @@ void OniCameraNode::maybeRender(const DRect& rect){
 void OniCameraNode::render(const DRect& Rect){
 
     if(m_pCamera.get()){
-    BitmapPtr pBmp = getSurface()->lockBmp();
+    BitmapPtr camImg = m_pCamera->getBitmap(false);
 
-    pBmp->copyPixels(*(m_pCamera->getBitmap(true)));
-    getSurface()->unlockBmps();
-
-    bind();
-    blt32(getSize(), getEffectiveOpacity(), getBlendMode());
+        if(camImg.get()){
+            BitmapPtr pBmp = getSurface()->lockBmp();
+            pBmp->copyPixels(*camImg);
+            getSurface()->unlockBmps();
+            bind();
+            blt32(getSize(), getEffectiveOpacity(), getBlendMode());
+        }
     }
 }
 
@@ -68,6 +70,10 @@ BitmapPtr OniCameraNode::getBitmap(bool blocking){
     }else{
         throw Exception(AVG_ERR_NO_NODE, "Activate Camera first");
     }
+}
+
+OniCameraPtr OniCameraNode::getCamera(){
+    return m_pCamera;
 }
 
 }//End namespace avg
