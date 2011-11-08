@@ -13,7 +13,7 @@
 #define AVG_PLUGIN
 #include <api.h>
 
-namespace avg{
+namespace avg {
 
 OniCamera::OniCamera(OniCameraType type, BitmapQueuePtr bmpPtrQueuePtr):
     m_type(type),
@@ -21,14 +21,15 @@ OniCamera::OniCamera(OniCameraType type, BitmapQueuePtr bmpPtrQueuePtr):
 {
 }
 
-BitmapQueuePtr OniCamera::getBmpQueue(){
-    return m_pQBmpPtr;
-}
-
-BitmapPtr OniCamera::getBitmap(bool blocking){
-    BitmapPtr image = m_pQBmpPtr->peek(blocking);
-    if(image.get()){
-        m_pLastImage = image;
+BitmapPtr OniCamera::getBitmap(bool blocking)
+{
+    if(m_pQBmpPtr->empty()) {
+        return m_pLastImage;
+    } else {
+        BitmapPtr image = m_pQBmpPtr->pop(blocking);
+        if(image.get()) {
+            m_pLastImage = image;
+        }
     }
     return m_pLastImage;
 }

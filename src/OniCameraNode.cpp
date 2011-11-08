@@ -45,7 +45,6 @@ void OniCameraNode::render(const DRect& Rect){
 
     if(m_pCamera.get()){
     BitmapPtr camImg = m_pCamera->getBitmap(false);
-
         if(camImg.get()){
             BitmapPtr pBmp = getSurface()->lockBmp();
             pBmp->copyPixels(*camImg);

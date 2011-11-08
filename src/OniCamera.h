@@ -31,7 +31,6 @@ class OniCamera
         OniCamera(OniCameraType type, BitmapQueuePtr bmpQueuePtr);
         OniCameraType getType() { return m_type; };
 
-        BitmapQueuePtr getBmpQueue();
         BitmapPtr getBitmap(bool blocking = true);
         virtual ~OniCamera();
     protected:

@@ -17,8 +17,8 @@ namespace avg{
 OniDevice::OniDevice()
 {
    m_pDevCmdQueue = OniDeviceThread::CQueuePtr(new OniDeviceThread::CQueue);
-   m_pQPtrDepthBmpPtr = BitmapQueuePtr(new BitmapQueue());
-   m_pQPtrRGBBmpPtr = BitmapQueuePtr(new BitmapQueue());
+   m_pQPtrDepthBmpPtr = BitmapQueuePtr(new BitmapQueue(100));
+   m_pQPtrRGBBmpPtr = BitmapQueuePtr(new BitmapQueue(100));
 
    m_pDeviceThread = new boost::thread(OniDeviceThread(*m_pDevCmdQueue,
             std::string("DeviceThread"), m_pQPtrRGBBmpPtr, m_pQPtrDepthBmpPtr ));

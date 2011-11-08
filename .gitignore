@@ -9,6 +9,8 @@
 CMakeFiles/*
 cmake_install.cmake
 Makefile
+CMakeCache.txt
+install_manifest.txt
 
 ##PYTHON
 *.mo

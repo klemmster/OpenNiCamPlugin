@@ -52,6 +52,7 @@ class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
 
         BitmapQueuePtr m_pQrgb;
         BitmapQueuePtr m_pQdepth;
+        IntPoint m_Size;
 };
 
 } //end namespace avg

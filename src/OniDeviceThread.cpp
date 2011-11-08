@@ -29,6 +29,8 @@ OniDeviceThread::~OniDeviceThread()
 bool OniDeviceThread::init(){
     AVG_TRACE(Logger::PLUGIN, "Init Thread");
 
+    m_Size = IntPoint(640, 480);
+
     XnStatus rc = XN_STATUS_OK;
     xn::EnumerationErrors errors;
     rc = m_Context.Init();
@@ -43,19 +45,17 @@ bool OniDeviceThread::init(){
 }
 
 void OniDeviceThread::deinit(){
+    m_Context.Shutdown();
     AVG_TRACE(Logger::PLUGIN, "Deinit Thread");
 }
 
 bool OniDeviceThread::work(){
     XnStatus rc = m_Context.WaitAndUpdateAll();
     if(RCisOK(rc)){
-        IntPoint size(640, 480);
-        m_pQrgb->push(BitmapPtr(new Bitmap(size, R8G8B8,
-                (unsigned char *)m_ImageGenerator.GetImageMap(), size.x*3, false)));
-        m_pQdepth->push(BitmapPtr(new Bitmap(size, I16,
-                (unsigned char*)m_DepthGenerator.GetDepthMap(), size.x*2, false )));
-    }else{
-        return false;
+        m_pQrgb->push(BitmapPtr(new Bitmap(m_Size, R8G8B8,
+                (unsigned char *)m_ImageGenerator.GetImageMap(), m_Size.x*3, false)));
+        m_pQdepth->push(BitmapPtr(new Bitmap(m_Size, I16,
+                (unsigned char*)m_DepthGenerator.GetDepthMap(), m_Size.x*2, false )));
     }
     return true;
 }
