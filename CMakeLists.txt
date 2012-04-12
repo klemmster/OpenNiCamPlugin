@@ -1,8 +1,8 @@
 
-cmake_minimum_required (VERSION 2.6) 
+cmake_minimum_required (VERSION 2.6)
 set(INCLUDES /usr/include/)
 set(INCLUDES ${INCLUDES} /usr/include/ni/)
-#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 set(AVG_PATH $ENV{AVG_PATH})
 if(NOT EXISTS "${AVG_PATH}/libavg/src/api.h")
@@ -15,7 +15,7 @@ if(WIN32)
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "C:\\gtkmm")
 endif()
 
-project (onicam) 
+project (onicam)
 find_package(PythonLibs REQUIRED)
 set(INCLUDES ${INCLUDES} ${PYTHON_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
@@ -28,22 +28,22 @@ find_package(LibXml2 REQUIRED)
 set(INCLUDES ${INCLUDES} ${LIBXML2_INCLUDE_DIR})
 set(LIBS ${LIBS} ${LIBXML2_LIBRARIES})
 
-#TODO: Properly integrate OpenNI
-set(LIBS ${LIBS} ${OpenNI_LIBRARIES})
-
+find_package(OpenNI REQUIRED)
+set(INCLUDES ${INCLUDES} ${OpenNI_INCLUDE_DIR})
+set(LIBS ${LIBS} ${OPENNI_LIBRARY})
 
 set(INCLUDES ${INCLUDES} ${AVG_PATH}/libavg/src)
 
-include_directories (${INCLUDES}) 
+include_directories (${INCLUDES})
 
-set(ONITOUCH_SRC src/DepthTouchDetector.cpp src/OniDeviceManager.cpp src/OniCamPlugin.cpp 
+set(ONITOUCH_SRC src/DepthTouchDetector.cpp src/OniDeviceManager.cpp src/OniCamPlugin.cpp
                                 src/OniDevice.cpp src/OniDeviceThread.cpp src/OniCameraNode.cpp src/OniCamera.cpp)
 
 add_library (onicam MODULE ${ONITOUCH_SRC})
 set_target_properties(onicam PROPERTIES PREFIX "")
 if(APPLE)
     set(CMAKE_MODULE_LINKER_FLAGS "-bundle -flat_namespace -undefined suppress")
-    target_link_libraries (onicam ${LIBS}) 
+    target_link_libraries (onicam ${LIBS})
 endif()
 
 if(UNIX AND NOT APPLE)
