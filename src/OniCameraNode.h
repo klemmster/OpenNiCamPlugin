@@ -21,6 +21,7 @@
 #include <base/Logger.h>
 #include <base/Exception.h>
 #include <player/OGLSurface.h>
+#include <graphics/TextureMover.h>
 
 #include "OniDeviceManager.h"
 #include "OniCamera.h"
@@ -35,10 +36,9 @@ class AVG_API OniCameraNode : public RasterNode
 
         static NodeDefinition createNodeDefinition();
 
-        virtual void setRenderingEngines(DisplayEngine* pDisplayEngine,
-                AudioEngine* pAudioEngine);
-        virtual void maybeRender(const DRect& Rect);
-        virtual void render (const DRect& Rect);
+        virtual void preRender(const VertexArrayPtr& pVA, bool bIsParentActive,
+                float parentEffectiveOpacity);
+        virtual void render();
 
         void activateDevice(int id = 0);
         void activateCamera(OniCameraType type = ONI_RGB_CAMERA);
@@ -51,6 +51,8 @@ class AVG_API OniCameraNode : public RasterNode
 
         OniDevicePtr m_pOniDev;
         OniCameraPtr m_pCamera;
+        TextureMoverPtr m_pTexMover;
+        GLTexturePtr m_pTexture;
 };
 
 typedef boost::shared_ptr<OniCameraNode> OniCameraNodePtr;

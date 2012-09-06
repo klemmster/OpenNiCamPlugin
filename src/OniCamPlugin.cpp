@@ -8,7 +8,7 @@ using namespace boost::python;
 
 char OniCameraNodeName[] = "OniCameraNode";
 
-BOOST_PYTHON_MODULE(OniCamPlugin)
+BOOST_PYTHON_MODULE(onicam)
 {
 
     class_<avg::OniCameraNode, bases<avg::RasterNode>, boost::shared_ptr<avg::OniCameraNode>, boost::noncopyable>("OniCameraNode", no_init)
@@ -31,10 +31,10 @@ BOOST_PYTHON_MODULE(OniCamPlugin)
 
 AVG_PLUGIN_API void registerPlugin()
 {
-    initOniCamPlugin();
+    initonicam();
     object mainModule(handle<>(borrowed(PyImport_AddModule("__main__"))));
-    object swipeModule(handle<>(PyImport_ImportModule("OniCamPlugin")));
-    mainModule.attr("OniCam") = swipeModule;
+    object swipeModule(handle<>(PyImport_ImportModule("onicam")));
+    mainModule.attr("onicam") = swipeModule;
 
     avg::NodeDefinition myNodeDefinition = avg::OniCameraNode::createNodeDefinition();
     const char* allowedParentNodeNames[] = {"avg", "div", "canvas", 0};

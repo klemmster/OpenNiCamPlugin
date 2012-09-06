@@ -40,7 +40,7 @@ class AVG_API OniDeviceThread : public WorkerThread<OniDeviceThread>
 
     protected:
 
-        bool RCisOK(const XnStatus rc);
+        bool RCisOK(const XnStatus rc, int line);
     private:
 
         xn::Context m_Context;
