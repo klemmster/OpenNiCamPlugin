@@ -1,5 +1,5 @@
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8.8)
 set(INCLUDES /usr/include/)
 set(INCLUDES ${INCLUDES} /usr/include/ni/)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
@@ -16,6 +16,9 @@ if(WIN32)
 endif()
 
 project (onicam)
+
+set(PYTHON_LIBRARY "/usr/lib/libpython2.7.so")
+set(PYTHON_INCLUDE_DIR "/home/richy/.virtualenvs/Archimedes/include/python2.7")
 find_package(PythonLibs REQUIRED)
 set(INCLUDES ${INCLUDES} ${PYTHON_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
