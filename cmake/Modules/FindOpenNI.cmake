@@ -17,21 +17,21 @@ project(Recorder)
 
 find_package(PkgConfig)
 if(${CMAKE_VERSION} VERSION_LESS 2.8.2)
-  pkg_check_modules(PC_OPENNI openni-dev)
+  pkg_check_modules(PC_OPENNI2 openni-dev)
 else()
-  pkg_check_modules(PC_OPENNI QUIET openni-dev)
+  pkg_check_modules(PC_OPENNI2 QUIET openni-dev)
 endif()
 
 set(OPENNI_DEFINITIONS ${PC_OPENNI_CFLAGS_OTHER})
 
 #add a hint so that it can find it without the pkg-config
-find_path(OPENNI_INCLUDE_DIR XnStatus.h
-          HINTS ${NESTK_ROOT_DIRS_HINTS} ${PC_OPENNI_INCLUDEDIR} ${PC_OPENNI_INCLUDE_DIRS} /usr/include/openni /usr/include/ni
+find_path(OPENNI_INCLUDE_DIR OpenNI.h
+          HINTS ${NESTK_ROOT_DIRS_HINTS} ${PC_OPENNI_INCLUDEDIR} ${PC_OPENNI_INCLUDE_DIRS} /usr/include
           PATHS "$ENV{PROGRAMFILES}/OpenNI/Include" "$ENV{PROGRAMW6432}/OpenNI/Include"
           PATH_SUFFIXES openni)
 #add a hint so that it can find it without the pkg-config
 find_library(OPENNI_LIBRARY
-             NAMES OpenNI64 OpenNI
+             NAMES OpenNI64 OpenNI2
              HINTS ${NESTK_ROOT_DIRS_HINTS} ${PC_OPENNI_LIBDIR} ${PC_OPENNI_LIBRARY_DIRS} /usr/lib
              PATHS "$ENV{PROGRAMFILES}/OpenNI/Lib${OPENNI_SUFFIX}" "$ENV{PROGRAMW6432}/OpenNI/Lib${OPENNI_SUFFIX}"
              PATH_SUFFIXES lib
@@ -45,7 +45,7 @@ else()
 endif()
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(OpenNI DEFAULT_MSG
+find_package_handle_standard_args(OpenNI2 DEFAULT_MSG
     OPENNI_LIBRARY OPENNI_INCLUDE_DIR)
 
 mark_as_advanced(OPENNI_LIBRARY OPENNI_INCLUDE_DIR)
@@ -53,6 +53,6 @@ if(OPENNI_FOUND)
   include_directories(${OPENNI_INCLUDE_DIRS})
   link_directories(${OPENNI_LIBRARY})
   add_definitions(${OPENNI_DEFINITIONS})
-  message(STATUS "OpenNI found (include: ${OPENNI_INCLUDE_DIR}, lib: ${OPENNI_LIBRARY})")
+  message(STATUS "OpenNI2 found (include: ${OPENNI_INCLUDE_DIR}, lib: ${OPENNI_LIBRARY})")
 endif(OPENNI_FOUND)
 

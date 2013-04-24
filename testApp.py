@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from libavg import avg, AVGApp
-from time import sleep
 
 g_Player = avg.Player.get()
 
@@ -13,11 +12,13 @@ class TestPlugin(AVGApp):
     oniDev = None
 
     def init(self):
-        g_Player.loadPlugin('onicam')
+        g_Player.loadPlugin('openni')
+        import pdb; pdb.set_trace()
         #self.plugin = OniCam.OniTouchPlugin()
         #self.manager = self.plugin.getDeviceManager()
         #self.oniDev = self.manager.getDevice(1)
         #node = self.oniDev.getRGBCameraNode()
+        """
         cam1Container = avg.DivNode(size=(640, 480))
         node = OniCam.OniCameraNode(size=(640, 480))
         node.activateDevice(0)
@@ -34,6 +35,7 @@ class TestPlugin(AVGApp):
         g_Player.getRootNode().appendChild(cam2Container)
 
         camera = node.getCamera()
+        """
 
 if __name__ == '__main__':
-    TestPlugin.start(resolution=(1280, 480))
+    TestPlugin.start(resolution=(800, 480))

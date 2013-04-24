@@ -39,36 +39,37 @@ set(INCLUDES ${INCLUDES} ${AVG_PATH}/libavg/src)
 
 include_directories (${INCLUDES})
 
-set(ONITOUCH_SRC src/DepthTouchDetector.cpp src/OniDeviceManager.cpp src/OniCamPlugin.cpp
-                                src/OniDevice.cpp src/OniDeviceThread.cpp src/OniCameraNode.cpp src/OniCamera.cpp)
+#set(ONITOUCH_SRC src/DepthTouchDetector.cpp src/OniDeviceManager.cpp src/OniCamPlugin.cpp
+#                                src/OniDevice.cpp src/OniDeviceThread.cpp src/OniCameraNode.cpp src/OniCamera.cpp)
+set(ONITOUCH_SRC src/OniDeviceManager src/OpenNIPlugin)
 
-add_library (onicam MODULE ${ONITOUCH_SRC})
-set_target_properties(onicam PROPERTIES PREFIX "")
+add_library (openni MODULE ${ONITOUCH_SRC})
+set_target_properties(openni PROPERTIES PREFIX "")
 if(APPLE)
     set(CMAKE_MODULE_LINKER_FLAGS "-bundle -flat_namespace -undefined suppress")
-    target_link_libraries (onicam ${LIBS})
+    target_link_libraries (openni ${LIBS})
 endif()
 
 if(UNIX AND NOT APPLE)
-    target_link_libraries (onicam ${LIBS} ${AVG_PATH}/libavg/src/wrapper/.libs/avg.so /usr/lib/libOpenNI.so)
+    target_link_libraries (openni ${LIBS} ${AVG_PATH}/libavg/src/wrapper/.libs/avg.so /usr/lib/libOpenNI2.so)
 endif()
 
 if(WIN32)
-    set_target_properties(onicam PROPERTIES COMPILE_DEFINITIONS "BOOST_ALL_NO_LIB;AVG_PLUGIN")
-    target_link_libraries (onicam ${LIBS} ${AVG_PATH}/libavg/win/Release/avg.lib)
+    set_target_properties(openni PROPERTIES COMPILE_DEFINITIONS "BOOST_ALL_NO_LIB;AVG_PLUGIN")
+    target_link_libraries (openni ${LIBS} ${AVG_PATH}/libavg/win/Release/avg.lib)
 endif()
 add_custom_command(
-    TARGET onicam
+    TARGET openni
     POST_BUILD
     COMMAND ${CMAKE_COMMAND}
-    ARGS -E copy ${CMAKE_CFG_INTDIR}/onicam${CMAKE_SHARED_LIBRARY_SUFFIX} ..
+    ARGS -E copy ${CMAKE_CFG_INTDIR}/openni${CMAKE_SHARED_LIBRARY_SUFFIX} ..
     )
 
 execute_process(COMMAND python -c "import os,libavg; print os.path.dirname(libavg.__file__)"
     OUTPUT_VARIABLE AVG_LIB_PATH
     OUTPUT_STRIP_TRAILING_WHITESPACE
     )
-install(TARGETS onicam
+install(TARGETS openni
     DESTINATION ${AVG_LIB_PATH}/plugin/
     )
 

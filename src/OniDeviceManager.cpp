@@ -13,19 +13,31 @@
 
 namespace avg {
 
+namespace {
+    OniDeviceManager* s_pOniDeviceManager = 0;
+}
+
+OniDeviceManager * OniDeviceManager::get()
+{
+    if (!s_pOniDeviceManager) {
+        s_pOniDeviceManager = new OniDeviceManager;
+    }
+    return s_pOniDeviceManager;
+}
 
 OniDeviceManager::OniDeviceManager()
 {
     ObjectCounter::get()->incRef(&typeid(*this));
-    AVG_TRACE(Logger::PLUGIN, "Constructed OniDeviceManager")
+    LOG_PLUGIN_CONFIG("Initialized OniDeviceManager");
 }
 
 OniDeviceManager::~OniDeviceManager()
 {
     ObjectCounter::get()->decRef(&typeid(*this));
-    AVG_TRACE(Logger::PLUGIN, "Deconstructed OniDeviceManager")
+    LOG_PLUGIN_CONFIG("Deconstructed OniDeviceManager");
 }
 
+/*
 const OniDevicePtr OniDeviceManager::getOniDevice(int id){
     std::map<int, OniDevicePtr>::iterator it;
     it = m_DevIDMap.find(id);
@@ -37,5 +49,6 @@ const OniDevicePtr OniDeviceManager::getOniDevice(int id){
         return it->second;
     }
 }
+    */
 
 } //End namespace avg
