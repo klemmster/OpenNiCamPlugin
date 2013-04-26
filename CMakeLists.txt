@@ -39,9 +39,8 @@ set(INCLUDES ${INCLUDES} ${AVG_PATH}/libavg/src)
 
 include_directories (${INCLUDES})
 
-#set(ONITOUCH_SRC src/DepthTouchDetector.cpp src/OniDeviceManager.cpp src/OniCamPlugin.cpp
-#                                src/OniDevice.cpp src/OniDeviceThread.cpp src/OniCameraNode.cpp src/OniCamera.cpp)
-set(ONITOUCH_SRC src/OniDeviceManager src/OpenNIPlugin)
+set(ONITOUCH_SRC src/OniDeviceManager src/OpenNIPlugin src/OniStreamNode
+    src/OniStreamThread)
 
 add_library (openni MODULE ${ONITOUCH_SRC})
 set_target_properties(openni PROPERTIES PREFIX "")

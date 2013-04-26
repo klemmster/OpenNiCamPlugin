@@ -7,30 +7,50 @@
 #include <base/Logger.h>
 #include <base/ObjectCounter.h>
 #include <boost/noncopyable.hpp>
+#include <boost/functional/hash.hpp>
+//#include <boost/shared_ptr.hpp>
 
-//#include "OniDevice.h"
+#include "OpenNIWrapper.h"
 
+using boost::shared_ptr;
+
+using openni::Device;
+using openni::VideoStream;
 
 namespace avg {
-    
+
 #define LOG_PLUGIN_CONFIG(msg){\
     AVG_TRACE(Logger::category::PLUGIN, Logger::severity::INFO, msg); \
 }\
 
-class AVG_PLUGIN OniDeviceManager:public boost::noncopyable
+typedef shared_ptr<Device> DevicePtr;
+typedef shared_ptr<VideoStream> StreamPtr;
+
+class AVG_PLUGIN OniDeviceManager:private boost::noncopyable
 {
 public:
 
-    //const OniDevicePtr getOniDevice(int number);
+    static OniDeviceManager& get() {
+        static OniDeviceManager instance;
+        return instance;
+    }
 
-    static OniDeviceManager* get();
-    virtual ~OniDeviceManager();
+    StreamPtr getVideoStream(UTF8String device, UTF8String STREAMTYPE);
+
+    // vector <string> getDeviceIDS();
 
 private:
-    //typedef std::map<int, OniDevicePtr> DeviceIDMap;
+    typedef std::map<const size_t, DevicePtr> DeviceMap;
+    typedef std::map<const size_t, StreamPtr> StreamMap;
+    
     OniDeviceManager();
+    virtual ~OniDeviceManager();
 
-    //DeviceIDMap m_DevIDMap;
+    DevicePtr getDevice(UTF8String id);
+
+    DeviceMap m_deviceMap;
+    StreamMap m_streamMap;
+    boost::hash<std::string> makeHash;
 };
 
 }//End namespace avg

@@ -13,11 +13,15 @@ class TestPlugin(AVGApp):
 
     def init(self):
         g_Player.loadPlugin('openni')
-        import pdb; pdb.set_trace()
+        g_root = g_Player.getRootNode()
         #self.plugin = OniCam.OniTouchPlugin()
         #self.manager = self.plugin.getDeviceManager()
         #self.oniDev = self.manager.getDevice(1)
         #node = self.oniDev.getRGBCameraNode()
+        stream = openni.StreamNode(deviceID="STANDARD", size=(640, 480), pos=(0, 0),
+                opacity=1.0)
+        
+        g_root.appendChild(stream)
         """
         cam1Container = avg.DivNode(size=(640, 480))
         node = OniCam.OniCameraNode(size=(640, 480))
